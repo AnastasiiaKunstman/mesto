@@ -1,0 +1,9 @@
+.element__like {
+    max-width: 22px;
+    max-height: 19px;
+    margin-right: 18px;
+}
+
+.element__like:hover {
+    opacity: 0.6;
+}

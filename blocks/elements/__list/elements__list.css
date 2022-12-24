@@ -1,0 +1,23 @@
+.elements__list {
+    padding: 0;
+    margin: 47px auto 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+}
+
+@media screen and (max-width: 900px) and (min-width: 320px) {
+    .elements__list {
+        justify-content: space-around;
+    }
+}
+  
+
+@media screen and (max-width: 320px) {
+    .elements__list {
+        margin: 36px auto 0;
+        justify-content: center;
+        gap: 20px;
+    }
+}
