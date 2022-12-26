@@ -3,12 +3,12 @@
     margin-left: 30px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
 }
 
 @media screen and (max-width: 900px) and (min-width: 570px) {
     .profile__info {
-       margin: 0;
+       margin-left: 15px;
     }
 }
   

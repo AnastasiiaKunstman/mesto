@@ -10,6 +10,7 @@
 @media screen and (max-width: 900px) and (min-width: 570px) {
     .profile {
         justify-content: space-around;
+        width: 96%;
     }
 }
 

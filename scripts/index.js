@@ -1,19 +1,25 @@
 const profile = document.querySelector('.profile');
-const popupButton = profile.querySelector('.profile__info-editButton');
+const editButton = profile.querySelector('.profile__info-edit-button');
 const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
 const popupClose = document.querySelector('.popup__close');
+const popupSave = document.querySelector('.popup__button-save');
+const formElement = document.querySelector('.popup__form');
 
-let formElement = document.querySelector('.popup__form');
-let username = document.querySelector('.popup__input_username');
-let job = document.querySelector('.popup__input_job');
+let username = document.querySelector('.popup__form-input_username');
+let job = document.querySelector('.popup__form-input_job');
 let profileTitle = profile.querySelector('.profile__title');
 let profileSubtitle = profile.querySelector('.profile__subtitle');
 
 console.log(formElement);
 
 function openPopup() {
-    popup.classList.toggle('popup_opened');
+    popup.classList.add('popup_opened');
+    username.value = profileTitle.textContent;
+    job.value = profileSubtitle.textContent;
+}
+
+function closePopup(){
+    popup.classList.remove('popup_opened');
     username.value = profileTitle.textContent;
     job.value = profileSubtitle.textContent;
 }
@@ -25,11 +31,13 @@ function handleFormSubmit (evt) {
     evt.preventDefault();    // Эта строчка отменяет стандартную отправку формы.
     profileTitle.textContent = username.value;
     profileSubtitle.textContent = job.value;
+    closePopup();
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка» 
 formElement.addEventListener('submit', handleFormSubmit);
 
-popupButton.addEventListener('click', openPopup);
+editButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', openPopup);
+popupClose.addEventListener('click', closePopup);
