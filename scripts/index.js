@@ -2,15 +2,12 @@ const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.profile__info-edit-button');
 const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close');
-const popupSave = document.querySelector('.popup__button-save');
 const formElement = document.querySelector('.popup__form');
 
-let username = document.querySelector('.popup__form-input_username');
-let job = document.querySelector('.popup__form-input_job');
+let username = document.querySelector('.popup__form-input_field_name');
+let job = document.querySelector('.popup__form-input_field_job');
 let profileTitle = profile.querySelector('.profile__title');
 let profileSubtitle = profile.querySelector('.profile__subtitle');
-
-console.log(formElement);
 
 function openPopup() {
     popup.classList.add('popup_opened');
@@ -20,8 +17,6 @@ function openPopup() {
 
 function closePopup(){
     popup.classList.remove('popup_opened');
-    username.value = profileTitle.textContent;
-    job.value = profileSubtitle.textContent;
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -39,5 +34,4 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 
 editButton.addEventListener('click', openPopup);
-popupClose.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
