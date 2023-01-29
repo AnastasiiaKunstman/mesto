@@ -3,4 +3,8 @@
     max-width: 282px;
     overflow: hidden;
     border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
