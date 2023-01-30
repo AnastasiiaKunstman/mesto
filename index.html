@@ -27,33 +27,33 @@
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <button type="button" class="popup__close" aria-label="Зыкрыть форму"></button>
-      <form class="popup__form" name="edit profile" action="#" method="post">
-        <input type="text" class="popup__form-input popup__form-input_field_name" name="username" required>
-        <input type="text" class="popup__form-input popup__form-input_field_job" name="job" required>
-        <button type="submit" class="popup__button-save" aria-label="Сохранение данных">Сохранить</button>
+  <div class="popup profile-popup">
+    <div class="profile-popup__container">
+      <h2 class="profile-popup__title">Редактировать профиль</h2>
+      <button type="button" class="popup__close profile-popup__close" aria-label="Зыкрыть форму"></button>
+      <form class="profile-popup__form" name="edit profile" action="#" method="post">
+        <input type="text" class="profile-popup__form-input profile-popup__form-input_field_name" name="username" required>
+        <input type="text" class="profile-popup__form-input profile-popup__form-input_field_job" name="job" required>
+        <button type="submit" class="popup__button-save profile-popup__button-save" aria-label="Сохранение данных">Сохранить</button>
       </form>
     </div>
   </div>
-  <div class="popup-photo">
-    <div class="popup-photo__container">
-      <h2 class="popup-photo__title">Новое место</h2>
-      <button type="button" class="popup-photo__close" aria-label="Зыкрыть форму"></button>
-      <form class="popup-photo__form" name="add photo" action="#" method="post">
-        <input type="text" class="popup-photo__form-input popup-photo__form-input_card_name" name="name" placeholder="Название" required>
-        <input type="text" class="popup-photo__form-input popup-photo__form-input_card_link" name="link" placeholder="Ссылка на картинку" required>
-        <button type="submit" class="popup-photo__button-save" aria-label="Сохранение данных">Создать</button>
+  <div class="popup card-popup">
+    <div class="card-popup__container">
+      <h2 class="card-popup__title">Новое место</h2>
+      <button type="button" class="popup__close card-popup__close" aria-label="Зыкрыть форму"></button>
+      <form class="card-popup__form" name="add photo" action="#" method="post">
+        <input type="text" class="card-popup__form-input card-popup__form-input_card_name" name="name" placeholder="Название" required>
+        <input type="text" class="card-popup__form-input card-popup__form-input_card_link" name="link" placeholder="Ссылка на картинку" required>
+        <button type="submit" class="popup__button-save card-popup__button-save" aria-label="Сохранение данных">Создать</button>
       </form>
     </div>
   </div>
-  <div class="popup-image">
-    <div class="popup-image__container">
-      <button type="button" class="popup-image__close" aria-label="Зыкрыть форму"></button>
-      <img src="#" alt="#" class="popup-image__photo">
-      <h2 class="popup-image__title"></h2>
+  <div class="popup image-popup">
+    <div class="image-popup__container">
+      <button type="button" class="popup__close image-popup__close" aria-label="Зыкрыть форму"></button>
+      <img src="#" alt="#" class="image-popup__photo">
+      <h2 class="image-popup__title"></h2>
     </div>
   </div>
   <template id="element-template">
