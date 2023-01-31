@@ -1,5 +1,4 @@
 const editButton = document.querySelector('.profile__info-edit-button');
-const popup = document.querySelector('.popup');
 const profilePopup = document.querySelector('.profile-popup');
 const profileForm = document.querySelector('.profile-popup__form');
 
@@ -39,7 +38,7 @@ function handleProfileFormSubmit (evt) {
     evt.preventDefault();    // Эта строчка отменяет стандартную отправку формы.
     profileTitle.textContent = userName.value;
     profileSubtitle.textContent = job.value;
-    closePopup(popup);
+    closePopup(profilePopup);
 };
 
 // Прикрепляем обработчик к форме:
