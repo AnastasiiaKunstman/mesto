@@ -6,40 +6,27 @@ const job = document.querySelector('.profile-popup__form-input_field_job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
-//Открыть попап
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-};
-
-//Открыть попап редактирования
-editButton.addEventListener('click', () => {
-  openPopup(profilePopup);
-  userName.value = profileTitle.textContent;
-  job.value = profileSubtitle.textContent;
-});
-
-
-//Закрыть попап
-function closePopup(popup) {
-  popup.classList.remove('popup_opened')
-};
-
-const closeButtons = document.querySelectorAll('.popup__close');
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-
 //Закрыть по Escape
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
   };
 };
-document.addEventListener('keydown', closeByEscape);
 
-//Закрытие по оверлей
+//Закрыть попап
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
+};
+
+//Открыть попап
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
+};
+
+//Закрытие по оверлей + крестик
 const closeByOverlay = document.querySelectorAll('.popup');
 closeByOverlay.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -50,6 +37,13 @@ closeByOverlay.forEach((popup) => {
       closePopup(popup)
     };
   });
+});
+
+//Открыть попап редактирования профиля
+editButton.addEventListener('click', () => {
+  openPopup(profilePopup);
+  userName.value = profileTitle.textContent;
+  job.value = profileSubtitle.textContent;
 });
 
 // Обработчик «отправки» формы, хотя пока
