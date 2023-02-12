@@ -40,8 +40,8 @@ function closeByEscape(evt) {
 document.addEventListener('keydown', closeByEscape);
 
 //Закрытие по оверлей
-const popups = document.querySelectorAll('.popup');
-popups.forEach((popup) => {
+const closeByOverlay = document.querySelectorAll('.popup');
+closeByOverlay.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')){
       closePopup(popup)
