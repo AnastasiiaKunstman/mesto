@@ -31,9 +31,27 @@
     <div class="profile-popup__container">
       <h2 class="profile-popup__title">Редактировать профиль</h2>
       <button type="button" class="popup__close profile-popup__close" aria-label="Зыкрыть форму"></button>
-      <form class="profile-popup__form" name="edit profile" action="#" method="post">
-        <input type="text" class="profile-popup__form-input profile-popup__form-input_field_name" name="username" required>
-        <input type="text" class="profile-popup__form-input profile-popup__form-input_field_job" name="job" required>
+      <form class="popup__form profile-popup__form" name="edit profile" action="#" method="post" novalidate>
+        <input
+          id="input-username"
+          required
+          type="text"
+          minlength="2"
+          maxlength="40"
+          name="username"
+          class="popup__input profile-popup__form-input profile-popup__form-input_field_name"
+        >
+        <span id="input-username-error" class="error"></span>
+        <input
+          id="input-job"
+          required
+          type="text"
+          minlength="2"
+          maxlength="200"
+          name="job"
+          class="popup__input profile-popup__form-input profile-popup__form-input_field_job"
+        >
+        <span id="input-job-error" class="error"></span>
         <button type="submit" class="popup__button-save profile-popup__button-save" aria-label="Сохранение данных">Сохранить</button>
       </form>
     </div>
@@ -42,9 +60,27 @@
     <div class="card-popup__container">
       <h2 class="card-popup__title">Новое место</h2>
       <button type="button" class="popup__close card-popup__close" aria-label="Зыкрыть форму"></button>
-      <form class="card-popup__form" name="add photo" action="#" method="post">
-        <input type="text" class="card-popup__form-input card-popup__form-input_card_name" name="name" placeholder="Название" required>
-        <input type="text" class="card-popup__form-input card-popup__form-input_card_link" name="link" placeholder="Ссылка на картинку" required>
+      <form class="popup__form card-popup__form" name="add photo" action="#" method="post" novalidate>
+        <input
+          id="input-name"
+          required
+          type="text"
+          minlength="2"
+          maxlength="30"
+          name="name"
+          class="popup__input card-popup__form-input card-popup__form-input_card_name"
+          placeholder="Название"
+         >
+        <span id="input-name-error" class="error"></span>
+        <input
+          id="input-link"
+          required
+          type="url"
+          name="link"
+          class="popup__input card-popup__form-input card-popup__form-input_card_link"
+          placeholder="Ссылка на картинку"
+        >
+        <span id="input-link-error" class="error"></span>
         <button type="submit" class="popup__button-save card-popup__button-save" aria-label="Сохранение данных">Создать</button>
       </form>
     </div>
@@ -68,6 +104,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/volidate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

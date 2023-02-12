@@ -1,7 +1,6 @@
+const profileForm = document.forms['profile-popup__form'];
 const editButton = document.querySelector('.profile__info-edit-button');
 const profilePopup = document.querySelector('.profile-popup');
-const profileForm = document.querySelector('.profile-popup__form');
-
 const userName = document.querySelector('.profile-popup__form-input_field_name');
 const job = document.querySelector('.profile-popup__form-input_field_job');
 const profileTitle = document.querySelector('.profile__title');
@@ -9,7 +8,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 
 //Открыть попап
 function openPopup(popup) {
-    popup.classList.add('popup_opened')
+    popup.classList.add('popup_opened');
 };
 
 //Открыть попап редактирования
@@ -30,7 +29,28 @@ closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
- 
+
+//Закрыть по Escape
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  };
+};
+document.addEventListener('keydown', closeByEscape);
+
+//Закрытие по оверлей
+const popups = document.querySelectorAll('.popup');
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')){
+      closePopup(popup)
+    };
+    if (evt.target.classList.contains('popup__close')){
+      closePopup(popup)
+    };
+  });
+});
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -41,9 +61,8 @@ function handleProfileFormSubmit (evt) {
     closePopup(profilePopup);
 };
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка» 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка» 
+profilePopup.addEventListener('submit', handleProfileFormSubmit);
 
 //Попап №2 - добавление новой карточки
 const addButton = document.querySelector('.profile__add-button');
@@ -51,6 +70,7 @@ const cardPopup = document.querySelector('.card-popup');
 const cardForm = document.querySelector('.card-popup__form');
 const cardName = document.querySelector('.card-popup__form-input_card_name');
 const cardLink = document.querySelector('.card-popup__form-input_card_link');
+
 
 //Открыть попап добавления новой карточки
 addButton.addEventListener('click', () => {
