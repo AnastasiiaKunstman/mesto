@@ -7,7 +7,7 @@ const formValidationConfig = {
   errorClass: 'popup__error-visible'
 };
 
-function disableSubmit(evt) {
+function preventDefaultSubmit(evt) {
   evt.preventDefault();
 };
 
@@ -23,7 +23,7 @@ function enableValidation(config) {
 
 function enableFormValidation(form, config) {
 
-  form.addEventListener('submit', disableSubmit);
+  form.addEventListener('submit', preventDefaultSubmit);
   form.addEventListener('input', () => {
     toggleButton(form, config);
   });

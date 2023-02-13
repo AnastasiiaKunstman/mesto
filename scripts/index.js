@@ -1,4 +1,4 @@
-const profileForm = document.forms['profile-popup__form'];
+const profileForm = document.forms['edit profile'];
 const editButton = document.querySelector('.profile__info-edit-button');
 const profilePopup = document.querySelector('.profile-popup');
 const userName = document.querySelector('.profile-popup__form-input_field_name');
@@ -27,8 +27,8 @@ function openPopup(popup) {
 };
 
 //Закрытие по оверлей + крестик
-const closeByOverlay = document.querySelectorAll('.popup');
-closeByOverlay.forEach((popup) => {
+const closePopups = document.querySelectorAll('.popup');
+closePopups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')){
       closePopup(popup)
@@ -61,7 +61,7 @@ profilePopup.addEventListener('submit', handleProfileFormSubmit);
 //Попап №2 - добавление новой карточки
 const addButton = document.querySelector('.profile__add-button');
 const cardPopup = document.querySelector('.card-popup');
-const cardForm = document.querySelector('.card-popup__form');
+const cardForm = document.forms['add photo'];
 const cardName = document.querySelector('.card-popup__form-input_card_name');
 const cardLink = document.querySelector('.card-popup__form-input_card_link');
 
