@@ -8,7 +8,7 @@
   margin-left: 36px;
   display: block;
   box-sizing: border-box;
-  max-height: max-content;
+  min-height: 30px;
   max-width: 358px;
 }
 

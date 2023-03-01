@@ -1,10 +1,5 @@
 .popup__input_type_error {
     border-bottom: 1px solid #FF0000;
-    margin: 0 auto 5px;
-}
-
-.popup__input_type_error:last-of-type {
-    margin-bottom: 5px;
 }
 
 @media screen and (max-width: 569px) and (min-width: 320px) {
