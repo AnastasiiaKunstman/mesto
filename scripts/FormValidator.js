@@ -1,33 +1,34 @@
 class FormValidator {
-  constructor(config, formSelector) {
+  constructor(config, form) {
     this._config = config,
-    this._formSelector = formSelector,
-    this._inputList = Array.from(this._formSelector.querySelectorAll(this._config.inputSelector))
+    this._form = form,
+    this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector)),
+    this._submitButton = this._form.querySelector(this._config.submitButtonSelector)
   }
 
-
   _preventDefaultSubmit(evt) {
-     evt.preventDefault();
+    evt.preventDefault();
   };
 
 
   enableValidation() {
-    this._formSelector.addEventListener('submit',this._preventDefaultSubmit);
+    this._form.addEventListener('submit', this._preventDefaultSubmit);
 
-    this._formSelector.addEventListener('input', () => {
-      this._toggleButton(this._formSelector);
+    this._form.addEventListener('input', () => {
+      this._toggleButton(this._form);
     });
 
-    this._addInputListerners(this._formSelector);
-    this._toggleButton(this._formSelector);
+    this._addInputListerners(this._form);
+    this._toggleButton(this._form);
 
-    this._formSelector.addEventListener('reset', () => {
+    this._form.addEventListener('reset', () => {
       setTimeout(() => {
-        this._toggleButton(this._formSelector);
+        this._toggleButton(this._form);
       }, 0);
     });
   };
-  
+
+
 
   //Проверка валидности формы
   _handleFormInput(event) {
@@ -41,29 +42,28 @@ class FormValidator {
     } else {
       this._input.classList.add(this._config.inputErrorClass);
       this._errorElement.textContent = this._input.validationMessage;
-     }
+    }
   };
 
 
+
   //Изменение состояния кнопки "Сохранить"
-  _toggleButton() {
-    this._submitButton = this._formSelector.querySelector(this._config.submitButtonSelector);
-    this._isFormValid = this._formSelector.checkValidity();
+  _toggleButton = () => {
+    this._isFormValid = this._form.checkValidity();
 
     this._submitButton.disabled = !this._isFormValid;
     this._submitButton.classList.toggle(this._config.inactiveButtonClass, !this._isFormValid);
   };
 
+
   //Функция-слушатель инпутов
   _addInputListerners = () => {
-      this._inputList.forEach((item) => {
-      item.addEventListener('input', (evt) => {
-        this._handleFormInput (evt);
+    this._inputList.forEach((input) => {
+      input.addEventListener('input', (event) => {
+        this._handleFormInput(event);
       });
     });
   };
-
-
 };
 
 

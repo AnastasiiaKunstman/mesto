@@ -8,13 +8,11 @@ class Card {
   }
 
   _getTemplate() {
-    const cardElement = document
+    return document
       .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
-
-    return cardElement;
   }
 
 
@@ -45,7 +43,7 @@ class Card {
 
     //Удаление
     _handleDelClick() {
-        this._elementDel.closest('.element').remove();
+        this._element.remove();
     };
      
     
