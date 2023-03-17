@@ -1,5 +1,5 @@
 class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor({data, handleCardClick}, templateSelector) {
     this._name = data.name,
     this._link = data.link,
     this._alt = data.alt,
@@ -48,7 +48,7 @@ class Card {
      
     
     //Увеличение
-    _handleCardClick() {
+    handleCardClick() {
       this._handleCardClick(this._link, this._name);
     };
 

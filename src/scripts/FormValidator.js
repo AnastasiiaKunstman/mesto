@@ -4,7 +4,7 @@ class FormValidator {
     this._form = form,
     this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector)),
     this._submitButton = this._form.querySelector(this._config.submitButtonSelector)
-  }
+  };
 
   _preventDefaultSubmit(evt) {
     evt.preventDefault();
