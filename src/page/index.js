@@ -1,12 +1,12 @@
-import ".//page/index.css";
-import Card from "./scripts/Card.js";
-import FormValidator from "./scripts/FormValidator.js";
-import { buttonEditProfile, buttonAddCard, profileForm, cardForm, userName, job, initialCards, formValidationConfig } from "./scripts/constans.js"
-import { Popup } from "./scripts/Popup.js";
-import { Section } from "./scripts/Section.js";
-import { PopupWithImage } from "./scripts/PopupWithImage.js";
-import { UserInfo } from "./scripts/UserInfo.js";
-import { PopupWithForm } from "./scripts/PopupWithForm.js";
+import "./index.css";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { buttonEditProfile, buttonAddCard, profileForm, cardForm, userName, job, initialCards, formValidationConfig } from "../components/constans.js"
+import { Popup } from "../components/Popup.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 
 
 //Экземпляры класса PopupWithForm
