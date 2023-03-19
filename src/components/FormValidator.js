@@ -15,15 +15,15 @@ class FormValidator {
     this._form.addEventListener('submit', this._preventDefaultSubmit);
 
     this._form.addEventListener('input', () => {
-      this._toggleButton(this._form);
+      this._toggleButton();
     });
 
     this._addInputListerners(this._form);
-    this._toggleButton(this._form);
+    this._toggleButton();
 
     this._form.addEventListener('reset', () => {
       setTimeout(() => {
-        this._toggleButton(this._form);
+        this._toggleButton();
       }, 0);
     });
   };

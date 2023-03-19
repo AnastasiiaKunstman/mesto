@@ -1,8 +1,7 @@
 import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { buttonEditProfile, buttonAddCard, profileForm, cardForm, userName, job, initialCards, formValidationConfig } from "../components/constans.js"
-import { Popup } from "../components/Popup.js";
+import { buttonEditProfile, buttonAddCard, profileForm, cardForm, userName, job, initialCards, formValidationConfig } from "../utils/constans.js"
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { UserInfo } from "../components/UserInfo.js";
@@ -20,9 +19,10 @@ popupProfile.setEventListeners();
 
 //Открыть попап редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
-  userName.value = userInfo.getUserInfo().username,
-    job.value = userInfo.getUserInfo().job,
-    popupProfile.open()
+  const userData = userInfo.getUserInfo()
+  userName.value = userData.username;
+  job.value = userData.job;
+  popupProfile.open()
 });
 
 
@@ -45,14 +45,12 @@ function renderCard(item) {
 };
 
 //Увеличение изображения
-const popupBigImage = new Popup('.image-popup');
-popupBigImage.setEventListeners();
+const popupImage = new PopupWithImage('.image-popup');
+popupImage.setEventListeners();
 
 function handleCardClick(name, link) {
-  const popupImage = new PopupWithImage('.image-popup');
   popupImage.open(name, link)
 };
-
 
 //Экземпляр формы добавления новой карточки
 const popupCard = new PopupWithForm('.card-popup', {
