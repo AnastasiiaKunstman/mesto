@@ -1,9 +1,9 @@
 class FormValidator {
   constructor(config, form) {
-    this._config = config,
-    this._form = form,
-    this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector)),
-    this._submitButton = this._form.querySelector(this._config.submitButtonSelector)
+    this._config = config;
+    this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+    this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
   };
 
   _preventDefaultSubmit(evt) {
@@ -15,7 +15,7 @@ class FormValidator {
     this._form.addEventListener('submit', this._preventDefaultSubmit);
 
     this._form.addEventListener('input', () => {
-      this._toggleButton();
+      this._toggleButton()
     });
 
     this._addInputListerners(this._form);
@@ -38,7 +38,7 @@ class FormValidator {
 
     if (this._input.validity.valid) {
       this._input.classList.remove(this._config.inputErrorClass);
-      this._errorElement.textContent = ' ';
+      this._errorElement.textContent = '';
     } else {
       this._input.classList.add(this._config.inputErrorClass);
       this._errorElement.textContent = this._input.validationMessage;

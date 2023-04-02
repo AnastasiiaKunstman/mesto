@@ -8,14 +8,13 @@
     gap: 17px;
 }
 
-@media screen and (max-width: 900px) and (min-width: 320px) {
+@media screen and (max-width: 900px) and (min-width: 609px) {
     .elements__list {
         grid-template-columns: repeat(2, 282px);
     }
 }
-  
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 608px) and (min-width: 320px) {
     .elements__list {
         margin: 36px auto 0;
         grid-template-columns: 282px;

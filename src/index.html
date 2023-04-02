@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
 </head>
+
 <body class="page">
   <header class="header">
     <img src="<%=require('./images/header__logo.svg')%>" class="header__logo" alt="Логотип">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="<%=require('./images/avatar.svg')%>" class="profile__avatar" alt="Аватар">
+      <button type="button" class="profile__edit-avatar-button" aria-label="Редактировать аватар">
+        <img src="" class="profile__avatar" alt="Аватар">
+      </button>
       <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button type="button" class="profile__info-edit-button" aria-label="Редактировать профиль"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <h1 class="profile__title"></h1>
+        <p class="profile__subtitle"></p>
       </div>
+      <button type="button" class="profile__info-edit-button" aria-label="Редактировать профиль"></button>
       <button type="button" class="profile__add-button" aria-label="Добавить новые фото"></button>
     </section>
     <section class="elements">
@@ -31,27 +35,14 @@
       <h2 class="profile-popup__title">Редактировать профиль</h2>
       <button type="button" class="popup__close profile-popup__close" aria-label="Зыкрыть форму"></button>
       <form class="popup__form profile-popup__form" name="edit profile" action="#" method="post" novalidate>
-        <input
-          id="input-username"
-          required
-          type="text"
-          minlength="2"
-          maxlength="40"
-          name="username"
-          class="popup__input profile-popup__form-input profile-popup__form-input_field_name"
-        >
+        <input id="input-username" required type="text" minlength="2" maxlength="40" name="username"
+          class="popup__input profile-popup__form-input profile-popup__form-input_field_name">
         <span id="input-username-error" class="error"></span>
-        <input
-          id="input-job"
-          required
-          type="text"
-          minlength="2"
-          maxlength="200"
-          name="job"
-          class="popup__input profile-popup__form-input profile-popup__form-input_field_job"
-        >
+        <input id="input-job" required type="text" minlength="2" maxlength="200" name="job"
+          class="popup__input profile-popup__form-input profile-popup__form-input_field_job">
         <span id="input-job-error" class="error"></span>
-        <button type="submit" class="popup__button-save profile-popup__button-save" aria-label="Сохранение данных">Сохранить</button>
+        <button type="submit" class="popup__button-save profile-popup__button-save"
+          aria-label="Сохранение данных">Сохранить</button>
       </form>
     </div>
   </div>
@@ -60,27 +51,14 @@
       <h2 class="card-popup__title">Новое место</h2>
       <button type="button" class="popup__close card-popup__close" aria-label="Зыкрыть форму"></button>
       <form class="popup__form card-popup__form" name="add photo" action="#" method="post" novalidate>
-        <input
-          id="input-name"
-          required
-          type="text"
-          minlength="2"
-          maxlength="30"
-          name="name"
-          class="popup__input card-popup__form-input card-popup__form-input_card_name"
-          placeholder="Название"
-         >
+        <input id="input-name" required type="text" minlength="2" maxlength="30" name="name"
+          class="popup__input card-popup__form-input card-popup__form-input_card_name" placeholder="Название">
         <span id="input-name-error" class="error"></span>
-        <input
-          id="input-link"
-          required
-          type="url"
-          name="link"
-          class="popup__input card-popup__form-input card-popup__form-input_card_link"
-          placeholder="Ссылка на картинку"
-        >
+        <input id="input-link" required type="url" name="link"
+          class="popup__input card-popup__form-input card-popup__form-input_card_link" placeholder="Ссылка на картинку">
         <span id="input-link-error" class="error"></span>
-        <button type="submit" class="popup__button-save card-popup__button-save" aria-label="Сохранение данных">Создать</button>
+        <button type="submit" class="popup__button-save card-popup__button-save"
+          aria-label="Сохранение данных">Создать</button>
       </form>
     </div>
   </div>
@@ -91,6 +69,27 @@
       <h2 class="image-popup__title"></h2>
     </div>
   </div>
+  <div class="popup avatar-popup">
+    <div class="avatar-popup__container">
+      <h2 class="avatar-popup__title">Обновить аватар</h2>
+      <button type="button" class="popup__close avatar-popup__close" aria-label="Зыкрыть форму"></button>
+      <form class="popup__form avatar-popup__form" name="new avatar" action="#" method="post" novalidate>
+        <input id="input-avatar" required type="url" name="avatar" class="popup__input avatar-popup__form-input"
+          placeholder="Ссылка на картинку">
+        <span id="input-avatar-error" class="error"></span>
+        <button type="submit" class="popup__button-save avatar-popup__button-save"
+          aria-label="Сохранение данных">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup delete-popup">
+    <div class="delete-popup__container">
+      <h2 class="delete-popup__title">Вы уверены?</h2>
+      <button type="button" class="popup__close delete-popup__close" aria-label="Зыкрыть форму"></button>
+      <button type="submit" class="popup__button-save delete-popup__button-save"
+        aria-label="Удаление данных">Да</button>
+    </div>
+  </div>
   <template id="element-template">
     <li class="element">
       <button type="button" class="element__del" aria-label="Удалить"></button>
@@ -99,9 +98,12 @@
       </button>
       <div class="element__description">
         <h2 class="element__title"></h2>
-        <button type="button" class="element__like" aria-label="Лайк"></button>
+        <button type="button" class="element__like" aria-label="Лайк">
+          <p class="element__like-counter">0</p>
+        </button>
       </div>
     </li>
   </template>
 </body>
+
 </html>
