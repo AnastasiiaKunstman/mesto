@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
@@ -29,23 +29,22 @@ class FormValidator {
   };
 
 
-
   //Проверка валидности формы
-  _handleFormInput(event) {
-    this._input = event.target;
+  _handleFormInput(item) {
+    this._input = item;
     this._inputId = this._input.id;
-    this._errorElement = document.querySelector(`#${this._inputId}-error`);
+    this._errorElement = this._form.querySelector(`#${this._inputId}-error`);
 
-    if (this._input.validity.valid) {
-      this._input.classList.remove(this._config.inputErrorClass);
-      this._errorElement.textContent = '';
-    } else {
+    if (!this._input.validity.valid) {
       this._input.classList.add(this._config.inputErrorClass);
       this._errorElement.textContent = this._input.validationMessage;
+      this._errorElement.classList.add(this._config.errorClass);
+    } else {
+      this._input.classList.remove(this._config.inputErrorClass);
+      this._errorElement.textContent = '';
+      this._errorElement.classList.remove(this._config.errorClass);
     }
   };
-
-
 
   //Изменение состояния кнопки "Сохранить"
   _toggleButton = () => {
@@ -57,14 +56,25 @@ class FormValidator {
 
 
   //Функция-слушатель инпутов
-  _addInputListerners = () => {
+  _addInputListerners() {
     this._inputList.forEach((input) => {
-      input.addEventListener('input', (event) => {
-        this._handleFormInput(event);
+      input.addEventListener('input', () => {
+        this._toggleButton();
+        this._handleFormInput(input);
       });
     });
   };
-};
 
+  resetValidation() {
+    this._inputList.forEach((input) => {
+      this._errorElement = this._form.querySelector(`#${input.id}-error`);
+
+      input.classList.remove(this._config.inputErrorClass);
+      this._errorElement.textContent = '';
+      this._errorElement.classList.remove(this._config.errorClass);
+    });
+  };
+
+};
 
 export default FormValidator;

@@ -23,32 +23,23 @@ const api = new Api({
 //Экземпляр класса UserInfo
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
+//Экземпляр класса UserInfo
+const cardSection = new Section({
+  renderItems: (data) => {
+    cardSection.render(createCard(data));
+  }
+}, '.elements__list'); 
+
 
 //Загрузка информации с сервера
-Promise.all([
-  api.getUserInfo()
-    .then((data) => {
-      nameUser.textContent = data.name;
-      jobUser.textContent = data.about;
-      userAvatar.src = data.avatar;
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([data, card]) => {
+      userInfo.setUserInfo({username: data.name, job: data.about});
+      userInfo.setUserAvatar({avatar: data.avatar});
       myId = data._id;
-      return myId
-    })
-    .catch((err) => alert(err)),
-  api.getInitialCards()
-    .then((data) => {
-      const cardSection = new Section({
-        items: data,
-        renderer: (data) => {
-          cardSection.addItem(createCard(data))
-        }
-      }, '.elements__list')
-
-      cardSection.renderedItems(data);
-    })
-    .catch((err) => alert(err))
-]);
-
+      cardSection.renderCards(card);
+      })
+      .catch((err) => alert(err))
 
 //Экземпляр формы редактирования профиля
 const popupProfile = new PopupWithForm('.profile-popup', {
@@ -56,11 +47,11 @@ const popupProfile = new PopupWithForm('.profile-popup', {
     popupProfile.renderLoading(true);
     api.changeUserInfo(data)
       .then((data) => {
-        nameUser.textContent = data.name;
-        jobUser.textContent = data.about;
+        userInfo.setUserInfo({username: data.name, job: data.about});
+        popupProfile.close();
       })
       .catch((err) => alert(err))
-      .finally(() => {popupProfile.renderLoading(false)})
+      .finally(() => {popupProfile.renderLoading(false)});
   }
 });
 popupProfile.setEventListeners();
@@ -70,7 +61,8 @@ buttonEditProfile.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   userName.value = userData.username;
   job.value = userData.job;
-  popupProfile.open()
+  validProfileForm.resetValidation();
+  popupProfile.open();
 });
 
 
@@ -119,26 +111,23 @@ function createCard(item) {
 
 //Экземпляр формы добавления новой карточки
 const popupCard = new PopupWithForm('.card-popup', {
-  handleSubmitForm: (data) => {
+  handleSubmitForm: ({name,link}) => {
     popupCard.renderLoading(true);
-    api.addNewCard(data)
-      .then((data) => {
-        const cardSection = new Section({
-          items: data,
-          renderer: (data) => {
-            cardSection.addItem(createCard(data))
-          }
-        }, '.elements__list')
-        cardSection.addNewItem(createCard(data));
+    api.addNewCard({name,link})
+      .then((item) => {
+        cardSection.render(createCard(item));
+        popupCard.close();
       })
       .catch((err) => alert(err))
-      .finally(() => {popupCard.renderLoading(false)})
+      .finally(() => {popupCard.renderLoading(false)});
   }
 });
+
 popupCard.setEventListeners();
 
 //Открыть попап добавления новых карточек
 buttonAddCard.addEventListener('click', () => {
+  validCardForm.resetValidation();
   popupCard.open()
 });
 
@@ -150,7 +139,7 @@ const popupEditAvatar = new PopupWithForm('.avatar-popup', {
     api.changeAvatar({avatar})
       .then((data) => {
         userInfo.setUserAvatar({ avatar: data.avatar });
-        popupEditAvatar.close()
+        popupEditAvatar.close();
       })
       .catch(err => console.log(`Ошибка при редактировании аватара: ${err}`))
       .finally(() => {popupEditAvatar.renderLoading(false)})
@@ -159,6 +148,7 @@ const popupEditAvatar = new PopupWithForm('.avatar-popup', {
 popupEditAvatar.setEventListeners();
 
 buttonEditAvatar.addEventListener('click', () => {
+  validAvatarForm.resetValidation();
   popupEditAvatar.open()
 });
 

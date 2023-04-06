@@ -4,18 +4,22 @@ export class Api {
         this._headers = config.headers;
     };
 
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+    };
+
+
     //Информация о пользователе
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: this._headers
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        }).then(this._checkResponse)
     };
 
     //Картинки с сервера
@@ -23,19 +27,13 @@ export class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        }).then(this._checkResponse)
     };
 
 
-    getAllData() {
-        return Promise.all([this.getUserInfo(), this.getInitialCards()])
-    };
+    // getAllData() {
+    //     return Promise.all([this.getUserInfo(), this.getInitialCards()])
+    // };
 
     //Редактирование информации о пользователе
     changeUserInfo(data) {
@@ -46,13 +44,7 @@ export class Api {
                 name: data.username,
                 about: data.job
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        }).then(this._checkResponse)
     };
 
 
@@ -65,13 +57,7 @@ export class Api {
                 name: data.name,
                 link: data.link
             }),
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        }).then(this._checkResponse)
     };
 
     //Изменение аватара
@@ -82,13 +68,7 @@ export class Api {
             body: JSON.stringify({
                 avatar: data.avatar
             })
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        }).then(this._checkResponse)
     };
 
     //Удаление карточки
@@ -96,13 +76,7 @@ export class Api {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
             headers: this._headers,
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        }).then(this._checkResponse)
     };
 
     //Лайк
@@ -110,25 +84,13 @@ export class Api {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: this._headers,
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
-    }
+        }).then(this._checkResponse)
+    };
 
     removeLike(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: this._headers,
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            //отклоняем промис в случае ошибки
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
-    }
+        }).then(this._checkResponse)
+    };
 }
