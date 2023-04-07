@@ -4,8 +4,8 @@ const buttonEditAvatar = document.querySelector('.profile__edit-avatar-button');
 const profileForm = document.forms['edit profile'];
 const cardForm = document.forms['add photo'];
 const avatarForm = document.forms['new avatar'];
-const userName = document.querySelector('.profile-popup__form-input_field_name');
-const job = document.querySelector('.profile-popup__form-input_field_job');
+const userName = document.querySelector('.popup__input_field_name');
+const job = document.querySelector('.popup__input_field_job');
 const nameUser = document.querySelector('.profile__title');
 const jobUser = document.querySelector('.profile__subtitle');
 const userAvatar = document.querySelector('.profile__avatar');
@@ -48,8 +48,8 @@ const formValidationConfig = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button-save_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error-visible'
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__error_visible',
 };
 
 export { buttonEditProfile, buttonAddCard, buttonEditAvatar, profileForm, cardForm, avatarForm, userName, job, nameUser, jobUser, userAvatar, formValidationConfig }
