@@ -1,8 +1,6 @@
-.image-popup__title {
+.popup__title-image {
     max-width: 291px;
     margin: 8px auto 0 0;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
